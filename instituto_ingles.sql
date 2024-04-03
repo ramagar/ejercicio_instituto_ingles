@@ -129,3 +129,13 @@ HAVING COUNT(a.nota_final) = (
         GROUP BY i.instructor_id
     ) AS max_alumnos
 );
+
+### Otra Opcion ya sabiendo que son dos ###
+select instructores.nombre as nombre, instructores.apellido as apellido, count(*) as cantidad from alumnos
+left join instructores
+on (alumnos.instructor_id=instructores.instructor_id)
+where alumnos.nota_final > 9
+group by instructores.nombre, instructores.apellido
+order by cantidad desc 
+LIMIT 2;
+
